@@ -84,3 +84,16 @@ npx hyperframes lint composition     # 官方 lint（Runtime/Motion/Layout 检�
 ```
 
 修改 slides/fragments/notes 时，注意 **composition/index.html 与 index.html 里的 island 要同步**。
+
+## 部署（GitHub Pages）
+
+本仓库通过 contents API 逐文件上传部署（`git push` 在本环境会超时）：
+
+```bash
+gh repo create yunagent-slideshow --public
+python3 scripts/gh_upload.py                       # PUT repos/.../contents/<path> 逐文件上传
+gh api --method POST repos/<owner>/yunagent-slideshow/pages \
+  --input pages-config.json                        # {"source":{"branch":"main","path":"/"}}
+```
+
+部署后验证：首页与关键资源全部 200，且 `DECK_URL=<线上URL> node scripts/browsertest.cjs` 24/24 PASS。
