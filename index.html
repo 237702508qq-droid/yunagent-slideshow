@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>云桌面 AI Agent 记忆增强方案 — 交互式演示</title>
+
+  <!--
+    HyperFrames standalone slideshow harness (0.8.41).
+    Bundles are vendored locally under ./vendor — no CDN, fully offline.
+  -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/hyperframes-player.global.js"></script>
+  <script src="vendor/hyperframes-slideshow.global.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0b1f3b; }
+    hyperframes-slideshow { background: #0b1f3b; }
+  </style>
+</head>
+<body>
+  <!--
+    tabindex="0" is critical — <hyperframes-slideshow> binds keydown
+    (ArrowLeft/Right, Space, Backspace) to itself. Without it, arrow keys are dead.
+  -->
+  <hyperframes-slideshow
+    tabindex="0"
+    notes-storage-key="yunagent-memory-deck"
+    style="display: block; position: relative; width: 100vw; height: 100vh"
+  >
+    <hyperframes-player
+      interactive
+      style="position: absolute; inset: 0"
+      src="composition/index.html"
+    ></hyperframes-player>
+
+    <!--
+      DUPLICATED ISLAND — keep in sync with composition/index.html.
+      <hyperframes-slideshow> reads the manifest from its own innerHTML.
+    -->
+    <script type="application/hyperframes-slideshow+json">
+{
+  "slides": [
+    {
+      "sceneId": "p1-cover",
+      "notes": "开场：让云桌面里的 AI Agent 真正懂你。一句话点题：方案本质是在 VDI 桌面内为 Agent 构建设备级情景记忆。标语首尾呼应：从抽卡到懂你。不展开技术。"
+    },
+    {
+      "sceneId": "p2-problems",
+      "notes": "两个典型问题（导图原文）：1) 用户提供很多提示词，Agent 仍然经常走偏；2) 很难通过模糊指令达成目标（昨天我和张三沟通的内容，帮我生成一个客户交流的材料）。收在三大根因与上下文断层结论。",
+      "fragments": [10.4, 10.8, 11.2, 11.6]
+    },
+    {
+      "sceneId": "p3-roots",
+      "notes": "根因页：问题1 的根因是 Agent 不了解当前用户，只能抽卡猜；问题2 的根因是它只记得对话框里的内容，桌面里做的事完全不了解。三个失败瞬间逐条点出，强调在消耗用户耐心。",
+      "fragments": [20.4, 20.8, 21.2, 21.6]
+    },
+    {
+      "sceneId": "p4-solution",
+      "notes": "方案总览：VDI 桌面启用桌面记忆，操作信息以数据库滚动记录；一方面供 Agent 调用形成桌面记忆，另一方面经模型整理为个人上下文（岗位/工作边界/写作偏好）。右图可点击进入三层架构分支。",
+      "fragments": [30.4, 30.8, 31.2, 31.6],
+      "hotspots": [
+        {
+          "id": "h-arch",
+          "label": "深入：三层架构与采集细节 →",
+          "target": "arch-detail",
+          "region": { "x": 35, "y": 95.3, "w": 30, "h": 4.5 }
+        }
+      ]
+    },
+    {
+      "sceneId": "p5-how",
+      "notes": "怎么解决两个问题：问题1 → 刚部署就了解用户的工作边界与写作偏好，回答成功率大幅提升（不再抽卡）；问题2 → Agent 具备和你一样的桌面记忆，模糊指令也能达成目标。底部场景条 + 改造前后对比分支入口。",
+      "fragments": [40.4, 40.8, 41.2, 41.6],
+      "hotspots": [
+        {
+          "id": "h-compare",
+          "label": "深入：改造前后完整对比 →",
+          "target": "compare-detail",
+          "region": { "x": 35, "y": 95.3, "w": 30, "h": 4.5 }
+        }
+      ]
+    },
+    {
+      "sceneId": "p6-profiles",
+      "notes": "持续学习：四类工作画像（人际图谱/文档习惯/工作边界/时间规律）持续沉淀。强调机制：全部在云桌面本地处理，记忆只服务这一个用户。价值：从通用助手到懂你的数字同事。",
+      "fragments": [50.4, 50.8, 51.2]
+    },
+    {
+      "sceneId": "p7-value",
+      "notes": "企业三大回报：采纳率（零学习成本、告别抽卡）、效率（单任务省 3-5 分钟，千员工年省人时过万）、资产（习惯沉淀为数字资产，人员流动不断档）。数字要慢读。",
+      "fragments": [60.4, 60.8, 61.2, 61.6]
+    },
+    {
+      "sceneId": "p8-vdi",
+      "notes": "为什么 VDI 是最佳载体：环境可控（云端受控环境无终端隐私阻力）、统一部署+管理员文件分发实现企业个性化 AI 服务、安全边界清晰。对比：PC 端产品做不到的，云桌面可以做得更好。",
+      "fragments": [70.4, 70.8, 71.2, 71.6]
+    },
+    {
+      "sceneId": "p9-security",
+      "notes": "四道防线逐条讲：本地闭环、企业主权（开关/保留时长/排除名单）、用户知情（可视化、可查看可删除）、脱敏处理（密码框支付页自动排除）。合规口径收尾。",
+      "fragments": [80.4, 80.8, 81.2, 81.6, 82.0]
+    },
+    {
+      "sceneId": "p10-next",
+      "notes": "收尾：三步落地路径——试点验证（20-50人 PoC）、场景深化（按部门定制记忆模板+文件分发）、全员推广。留下联系方式占位。最后一句收在懂你的数字同事。",
+      "fragments": [90.4, 90.8]
+    }
+  ],
+  "slideSequences": [
+    {
+      "id": "arch-detail",
+      "label": "三层架构详解",
+      "slides": [
+        {
+          "sceneId": "b-arch",
+          "notes": "分支页：采集层（无障碍树+智能截图，不录屏、哈希脱敏）→ 记忆层（本地工作上下文数据库滚动记录）→ 增强层（模糊指令自动补全 5W）。按上一步或 Esc 返回主线。"
+        }
+      ]
+    },
+    {
+      "id": "compare-detail",
+      "label": "改造前后对比",
+      "slides": [
+        {
+          "sceneId": "b-compare",
+          "notes": "分支页：同一条指令的完整链路对比。改造前：Agent 反问、手动找文件、手动上传说明要求，5 分钟起步；改造后：记忆定位昨天+张三+方案.docx，按既往习惯转换，30 秒内输出即用。按上一步或 Esc 返回主线。"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+  </hyperframes-slideshow>
+  <!-- The built-in slideshow nav capsule renders Present; no wrapper-level button. -->
+
+  <script>
+    // Hotspot bridge: the composition posts {source:"hf-deck-hotspot"} when a
+    // branch card is clicked; here we drive the slideshow's public API.
+    (function () {
+      var slideEl = document.querySelector("hyperframes-slideshow");
+      function enterBranch(seqId) {
+        if (!slideEl) return;
+        try {
+          var c = slideEl.controller;
+          if (c && typeof c.enterBranch === "function") {
+            c.enterBranch(seqId);
+          }
+        } catch (e) {}
+      }
+      window.addEventListener("message", function (e) {
+        var d = e.data;
+        if (!d || d.source !== "hf-deck-hotspot" || !d.sequenceId) return;
+        enterBranch(d.sequenceId);
+      });
+    })();
+  </script>
+</body>
+</html>
